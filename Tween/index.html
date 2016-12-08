@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script type="text/javascript" src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>-->
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+   function cc(type){
+        alert("ccccccccccc" + type)
+        return "nextSuccessor"
+    }
+
+    /*var Chain = function(fn){
+        this.fn = fn;
+        this.successor = null;
+    }
+
+    Chain.prototype.setNextSuccessor = function(successor){
+        this.successor = successor;
+    }
+
+    Chain.prototype.passRequest = function(){
+        var ret = this.fn.apply(this,arguments);
+
+        if(ret == 'nextSuccessor'){
+            return this.successor && this.successor.passRequest.apply(this.successor,arguments);
+        }
+
+        return ret;
+    }*/
+
+
+
+    //AOP的基本写法
+    Function.prototype.after = function(fn){
+        var self = this;
+        return function(){
+            var ret = self.apply(this,arguments);
+            if(ret == 'nextSuccessor'){
+                return fn.apply(this,arguments);
+            }
+        }
+    }
+
+
+</script>
+</html>
